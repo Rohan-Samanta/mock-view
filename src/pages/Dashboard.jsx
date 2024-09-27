@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import HorizontalStepper from "../components/Stepper";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import DeblurIcon from "@mui/icons-material/Deblur";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const steps = ["Create Account", "Next Step", "Next Step", "Final Step"];
 
 const Dashboard = () => {
+  const theme = useTheme();
+
+  const smDown = useMediaQuery(theme.breakpoints.down("sm"));
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [activeStep, setActiveStep] = useState(0);
-
+  console.log(smDown);
   return (
     <Box sx={{ background: "lightBlue", height: "100vh" }}>
       <Box sx={{ pt: 8 }}>
@@ -19,7 +24,7 @@ const Dashboard = () => {
         {activeStep === 4 ? (
           <Box
             sx={{
-              width: 500,
+              width: smDown ? "auto" : 500,
               background: "white",
               mt: 6,
               borderRadius: 5,
@@ -42,7 +47,7 @@ const Dashboard = () => {
         ) : (
           <Box
             sx={{
-              width: 500,
+              width: smDown ? "auto" : 500,
               background: "white",
               mt: 6,
               borderRadius: 5,
